@@ -61,7 +61,8 @@ static ssize_t nulldump_write(struct file *file, const char __user *buf, size_t 
 
 		if (not_copied) {
 			pr_info("nulldump: copy_from_user fault off=%zu not_copied=%zu pid=%d comm=%s\n",pos + copied, not_copied, current->pid, current->comm);
-			break;
+			kfree(kbuf);
+			return -EFAULT;
 		}
 
 		pos += copied;
