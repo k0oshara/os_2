@@ -43,7 +43,7 @@ static ssize_t nulldump_write(struct file *file, const char __user *buf, size_t 
     kbuf = kmalloc(cap, GFP_KERNEL);
     if (!kbuf) {
         pr_info("nulldump: dump skipped (kmalloc failed) pid=%d comm=%s\n", current->pid, current->comm);
-        return len;
+        return -ENOMEM;
     }
 
     while (pos < len) {
