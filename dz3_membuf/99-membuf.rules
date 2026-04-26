@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="membuf", KERNEL=="membuf*", MODE="0666"

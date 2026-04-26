@@ -41,3 +41,13 @@ sudo dkms install membuf/0.1 -k "$(uname -r)"
 sudo modprobe membuf num_devices=3 default_buf_size=16
 lsmod | grep membuf
 ```
+
+### udev rule
+
+```bash
+sudo cp 99-membuf.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+
+sudo rmmod membuf 2>/dev/null || true
+sudo insmod ./membuf.ko num_devices=3 default_buf_size=16
+```
